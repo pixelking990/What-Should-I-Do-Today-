@@ -1,0 +1,101 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   What Should I Do Today?
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   @keyframes spin {
+    0% {
+     transform: rotate(0deg);
+    }
+    100% {
+     transform: rotate(360deg);
+    }
+   }
+  </style>
+  <script>
+   document.addEventListener('DOMContentLoaded', function () {
+    const activities = [
+      "Hiking", "Reading", "Picnic", "Painting", "Cycling", "Cooking", "Yoga", "Playing Music", "Gardening", "Swimming",
+      "Jogging", "Photography", "Bird Watching", "Fishing", "Camping", "Board Games", "Karaoke", "Dancing", "Baking", "Crafting",
+      "Meditation", "Stargazing", "Volunteering", "Visiting a Museum", "Going to a Concert", "Watching a Movie", "Playing Sports",
+      "Learning a New Language", "Writing", "Blogging", "Podcasting", "Drawing", "Sculpting", "Knitting", "Sewing", "Scrapbooking",
+      "Journaling", "Origami", "Puzzles", "Magic Tricks", "Calligraphy", "Pottery", "Woodworking", "Metalworking", "Glassblowing",
+      "Soap Making", "Candle Making", "Jewelry Making", "Model Building", "Collecting", "Geocaching", "Rock Climbing", "Surfing",
+      "Skiing", "Snowboarding", "Ice Skating", "Roller Skating", "Skateboarding", "BMX Biking", "Mountain Biking", "Horseback Riding",
+      "Archery", "Fencing", "Martial Arts", "Boxing", "Wrestling", "Gymnastics", "Parkour", "Trampolining", "Skydiving", "Paragliding",
+      "Bungee Jumping", "Scuba Diving", "Snorkeling", "Sailing", "Kayaking", "Canoeing", "Rowing", "Paddleboarding", "Wind Surfing",
+      "Kite Surfing", "Wakeboarding", "Water Skiing", "Jet Skiing", "Snowmobiling", "Dog Sledding", "Ice Fishing", "Snowshoeing",
+      "Cross-Country Skiing", "Sledding", "Tobogganing", "Curling", "Ice Hockey", "Figure Skating", "Speed Skating", "Luge", "Bobsledding",
+      "Skeleton", "Biathlon", "Triathlon", "Decathlon", "Pentathlon", "Heptathlon", "Marathon", "Ultra Marathon", "Trail Running"
+    ];
+
+    let interval;
+    const activityDisplay = document.getElementById('activity-display');
+    const stopButton = document.getElementById('stop-button');
+
+    document.querySelectorAll('.genre-button').forEach(button => {
+      button.addEventListener('click', function () {
+        document.querySelectorAll('.genre-button').forEach(btn => btn.classList.remove('bg-green-600'));
+        this.classList.add('bg-green-600');
+        startSpinning();
+      });
+    });
+
+    stopButton.addEventListener('click', function () {
+      clearInterval(interval);
+    });
+
+    function startSpinning() {
+      interval = setInterval(() => {
+        const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+        activityDisplay.textContent = randomActivity;
+      }, 100);
+    }
+   });
+  </script>
+ </head>
+ <body class="font-roboto bg-black text-white">
+  <main class="container mx-auto p-4 text-center">
+   <section class="mb-8">
+    <h2 class="text-3xl font-bold mb-4">
+     Find Your Next Adventure
+    </h2>
+    <p class="mb-4">
+     Select your preferences and we'll suggest a fun activity for you!
+    </p>
+    <div class="flex justify-center space-x-4">
+     <button class="genre-button bg-white text-black px-4 py-2 rounded hover:bg-gray-200">
+      Indoor
+     </button>
+     <button class="genre-button bg-white text-black px-4 py-2 rounded hover:bg-gray-200">
+      Outdoor
+     </button>
+     <button class="genre-button bg-white text-black px-4 py-2 rounded hover:bg-gray-200">
+      Budget-Friendly
+     </button>
+     <button class="genre-button bg-white text-black px-4 py-2 rounded hover:bg-gray-200">
+      Adventurous
+     </button>
+    </div>
+   </section>
+   <section>
+    <h3 class="text-2xl font-bold mb-4">
+     Suggested Activity
+    </h3>
+    <div class="text-4xl font-bold mb-4" id="activity-display">
+     [activity]
+    </div>
+    <button class="bg-white text-black px-4 py-2 rounded hover:bg-gray-200" id="stop-button">
+     Stop
+    </button>
+   </section>
+  </main>
+ </body>
+</html>
